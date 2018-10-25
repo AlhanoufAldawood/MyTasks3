@@ -76,9 +76,11 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addTask();
-                 Intent AddTask = new Intent(AddTaskActivity.this, parentHome.class);
-                 startActivity(AddTask);
-            }
+                Intent home = new Intent(AddTaskActivity.this, parentHome.class);
+                startActivity(home);}
+
+
+
         });
 
        // findViewById(R.id.btn_date). setOnClickListener(this);
@@ -106,13 +108,15 @@ public class AddTaskActivity extends AppCompatActivity {
 
     private void addTask (){
 
+
         String title = taskTitle.getText().toString().trim();
         String description = taskDescription.getText().toString().trim();
         String time =txtTime.getText().toString().trim();
         String date =txtDate.getText().toString().trim();
 
 
-        if (!TextUtils.isEmpty(title)) {
+
+        if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(date) &&  !TextUtils.isEmpty(date)) {
 
             String id = databaseTasks.push().getKey();
 
@@ -121,12 +125,47 @@ public class AddTaskActivity extends AppCompatActivity {
             databaseTasks.child(id).setValue(task);
 
             Toast.makeText(this,"Task added" ,Toast.LENGTH_LONG).show();
+            Intent AddTask = new Intent(AddTaskActivity.this, parentHome.class);
+            startActivity(AddTask);
 
 
-        } else{
-            Toast.makeText(this,"Title is required" ,Toast.LENGTH_LONG).show();
-        }
+        } else if(TextUtils.isEmpty(title) && TextUtils.isEmpty(date) && TextUtils.isEmpty(time)){
+            taskTitle.setError("Title is required");
+            txtDate.setError("Date is required");
+            txtTime.setError("Time is required");
+            return;
 
+        }else if(TextUtils.isEmpty(time)) {
+            txtTime.setError("Time is required");
+            return;}
+
+        else if(TextUtils.isEmpty(date)) {
+            txtDate.setError("Date is required");
+            return;
+
+
+
+        }else if(TextUtils.isEmpty(title) && TextUtils.isEmpty(date)){
+            taskTitle.setError("Title is required");
+            txtDate.setError("Date is required");
+            return;
+
+        }else if(TextUtils.isEmpty(title) && TextUtils.isEmpty(time)){
+            taskTitle.setError("Title is required");
+            txtTime.setError("Time is required");
+            return;
+
+        }else if(TextUtils.isEmpty(date) && TextUtils.isEmpty(time)){
+        txtDate.setError("Date is required");
+        txtTime.setError("Time is required");
+        return;
+
+    }else if(TextUtils.isEmpty(title) ){
+        taskTitle.setError("Title is required");
+        return;
+
+
+    }
 
     }
 

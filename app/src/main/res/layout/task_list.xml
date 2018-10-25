@@ -11,6 +11,7 @@
 
     <TextView
         android:id="@+id/titleText"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -18,5 +19,6 @@
         tools:layout_editor_absoluteY="171dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"/>
 </android.support.constraint.ConstraintLayout>

@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildTasks extends AppCompatActivity implements OnClickListener{
+public class ChildTasks extends AppCompatActivity {
 
     ListView listViewTasks;
     DatabaseReference ref;
@@ -44,7 +44,7 @@ public class ChildTasks extends AppCompatActivity implements OnClickListener{
        final String childId = intent.getStringExtra(parentHome.childId);
        String childName = intent.getStringExtra(parentHome.childName);
 
-         findViewById(R.id.fab). setOnClickListener(this);
+     /*    findViewById(R.id.fab). setOnClickListener(this);
 
 
     }
@@ -60,7 +60,7 @@ public class ChildTasks extends AppCompatActivity implements OnClickListener{
                 else{
                 Intent AddChild = new Intent(ChildTasks.this, AddTaskActivity.class);
                 startActivity(AddChild);}
-        }
+        }*/
     }
 
     @Override
