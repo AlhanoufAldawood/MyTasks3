@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.addChild:
                 addChild();
-                Intent AddChild = new Intent(MainActivity.this, parentHome.class);
-                startActivity(AddChild);
+
         }
     }
 
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-            if (!TextUtils.isEmpty(Name)) {
+            if (!TextUtils.isEmpty(Name) &&!TextUtils.isEmpty(User) && !TextUtils.isEmpty(Password)) {
 
                 String id = databaseTasks.push().getKey();
 
@@ -82,10 +81,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 databaseTasks.child(id).setValue(child);
 
                 Toast.makeText(this,"Child added" ,Toast.LENGTH_LONG).show();
+                Intent AddChild = new Intent(MainActivity.this, parentHome.class);
+                startActivity(AddChild);
 
-
-            } else{
-                Toast.makeText(this,"name is required" ,Toast.LENGTH_LONG).show();
+            } else if (TextUtils.isEmpty(Name) && TextUtils.isEmpty(User) && TextUtils.isEmpty(Password)){
+                    name.setError("Name is required");
+                    user.setError("User is required");
+                    password.setError("Password is required");
+                    return;
+            }else if (TextUtils.isEmpty(Name)  && TextUtils.isEmpty(Password)){
+                name.setError("Name is required");
+                password.setError("Password is required");
+                return;
+            }else if (TextUtils.isEmpty(Name)  && TextUtils.isEmpty(User)){
+                name.setError("Name is required");
+                user.setError("User is required");
+                return;
+            }else if (TextUtils.isEmpty(User)  && TextUtils.isEmpty(Password)){
+                user.setError("User is required");
+                password.setError("Password is required");
+                return;
             }
 
 

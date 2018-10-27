@@ -42,7 +42,12 @@ public class AddTaskActivity extends AppCompatActivity {
         taskTitle = (EditText) findViewById(R.id.tasktitle);
         taskDescription = (EditText) findViewById(R.id.taskdescription);
         txtDate=(EditText)findViewById(R.id.in_date);
+        txtDate.setKeyListener(null);
+        txtDate.setBackground(null);
+
         txtTime=(EditText)findViewById(R.id.in_time);
+        txtTime.setKeyListener(null);
+        txtTime.setBackground(null);
 
         btnTimePicker =(Button)findViewById(R.id.btn_time);
         btnDatePicker =(Button)findViewById(R.id.btn_date);
@@ -76,12 +81,11 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addTask();
-                Intent home = new Intent(AddTaskActivity.this, parentHome.class);
-                startActivity(home);}
+
+            }
+                });
 
 
-
-        });
 
        // findViewById(R.id.btn_date). setOnClickListener(this);
         //findViewById(R.id.btn_time). setOnClickListener(this);
@@ -150,12 +154,12 @@ public class AddTaskActivity extends AppCompatActivity {
             txtDate.setError("Date is required");
             return;
 
-        }else if(TextUtils.isEmpty(title) && TextUtils.isEmpty(time)){
+        }else if(TextUtils.isEmpty(date) && TextUtils.isEmpty(time)){
             taskTitle.setError("Title is required");
             txtTime.setError("Time is required");
             return;
 
-        }else if(TextUtils.isEmpty(date) && TextUtils.isEmpty(time)){
+        }else if(TextUtils.isEmpty(title) && TextUtils.isEmpty(time)){
         txtDate.setError("Date is required");
         txtTime.setError("Time is required");
         return;
